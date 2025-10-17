@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vishaka Consultants | Diversity, Equanimity, Harmony</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light gray background */
+        }
+
+        /* Custom gradient for backgrounds and accents */
+        .gradient-bg {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed, #a855f7);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #4f46e5, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Animation for page content */
+        .page-content {
+            display: none;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* On-scroll animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom styling for the form */
+        .form-input {
+            background-color: #f1f5f9;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .form-input:focus {
+            background-color: white;
+            border-color: #6d28d9;
+            box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.2);
+            outline: none;
+        }
+        
+        /* Glassmorphism effect for cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Hero image container */
+        .hero-image-container {
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.5rem; /* rounded-3xl */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-2xl */
+            background-color: #f1f5f9; /* Soft background for contain */
+        }
+
+        .hero-image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Changed to contain to prevent cropping */
+        }
+    </style>
+</head>
+<body class="text-slate-700">
+
+    <!-- Header and Navigation --><header class="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <!-- Logo Placeholder --><a href="#home" class="flex items-center" onclick="showPage('home', this)">
+                    <img src="https://placehold.co/40x40/4f46e5/ffffff?text=V" alt="Vishaka Consultants Logo" class="h-10 w-10 rounded-full object-cover">
+                    <h1 class="text-2xl font-bold gradient-text ml-2 hidden sm:block">Vishaka CONSULTANTS</h1>
+                </a>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link text-slate-600 hover:text-violet-700 font-medium transition duration-300" onclick="showPage('home', this)">Home</a>
+                <a href="#about" class="nav-link text-slate-600 hover:text-violet-700 font-medium transition duration-300" onclick="showPage('about', this)">About Us</a>
+                <a href="#founder" class="nav-link text-slate-600 hover:text-violet-700 font-medium transition duration-300" onclick="showPage('founder', this)">Founder</a>
+                <a href="#contact" class="nav-link text-slate-600 hover:text-violet-700 font-medium transition duration-300" onclick="showPage('contact', this)">Contact Us</a>
+            </nav>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-slate-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu --><div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#home" class="block py-2 text-slate-600 hover:text-violet-700" onclick="showPage('home', this); closeMenu();">Home</a>
+            <a href="#about" class="block py-2 text-slate-600 hover:text-violet-700" onclick="showPage('about', this); closeMenu();">About Us</a>
+            <a href="#founder" class="block py-2 text-slate-600 hover:text-violet-700" onclick="showPage('founder', this); closeMenu();">Founder</a>
+            <a href="#contact" class="block py-2 text-slate-600 hover:text-violet-700" onclick="showPage('contact', this); closeMenu();">Contact Us</a>
+        </div>
+    </header>
+
+    <main class="pt-20">
+        <!-- HOME PAGE CONTENT --><section id="home" class="page-content active">
+            <!-- Hero Section --><div class="relative overflow-hidden pt-16 pb-24 md:pt-24 md:pb-32">
+                <div class="container mx-auto px-6 text-center">
+                    <h2 class="text-4xl md:text-6xl font-extrabold text-slate-800 mb-4 reveal max-w-4xl mx-auto">
+                        <span>Welcome to</span>
+                        <span class="block">VISHAKA CONSULTANTS</span>
+                    </h2>
+                    <p class="text-lg md:text-xl text-slate-600 mb-8 max-w-3xl mx-auto reveal" style="transition-delay: 200ms;">Creating a pathway towards diversity, equanimity, and harmony at the workplace!</p>
+                    <div class="reveal" style="transition-delay: 400ms;">
+                        <p class="text-2xl font-semibold gradient-text italic mb-12">“Embracing Unity: Empowering a world of differences”!</p>
+                    </div>
+
+                    <!-- Vishaka Consultants Banner Image --><div class="hero-image-container mb-16 reveal" style="transition-delay: 600ms;">
+                        <img src="contact.png" alt="Vishaka Consultants Banner">
+                    </div>
+
+                    <p class="text-lg text-slate-600 max-w-3xl mx-auto reveal">VISHAKA CONSULTANTS is a social enterprise that aims to create a pathway that leads to diversity, equanimity, and harmony in the workplace. It embraces unity and empowers a world of differences!</p>
+                </div>
+            </div>
+
+            <!-- Main Content Grid --><div class="container mx-auto px-6 py-16">
+                <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                    <div class="reveal">
+                        <h3 class="text-3xl font-bold text-slate-800 mb-4">Cultivating Workplace Well-being is Important!</h3>
+                        <p class="mb-4">In the hustle and bustle of the workweek, it is crucial to prioritize the well-being of every employee. A positive culture can make work a pleasure, achievable through a tranquil work environment, diversity, and equanimity.</p>
+                        <p>A workplace that prioritizes these values can benefit all employees and build a strong organizational structure in the long run.</p>
+                    </div>
+                    <div class="reveal">
+                        <!-- Cultivating Workplace Well-being Image --><img src="https://image.pollinations.ai/prompt/Modern%20graphic%20'Cultivating%20Workplace%20Well-being%20is%20important!'%20abstract%20design,%20gradient%20violet%20blue%20background,%20clean%20icons%20representing%20meditation,%20work-life%20balance,%20growth" alt="Cultivating Workplace Well-being" class="rounded-2xl shadow-xl w-full h-auto">
+                    </div>
+                </div>
+
+                <!-- Core Values Section --><div class="py-20">
+                    <h3 class="text-3xl font-bold text-center text-slate-800 mb-2 reveal">Our Core Values</h3>
+                    <p class="text-center text-slate-600 mb-12 max-w-2xl mx-auto reveal">How diversity, equanimity, and harmony are beneficial at the workplace.</p>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <!-- Diversity Card --><div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 reveal">
+                            <img src="https://image.pollinations.ai/prompt/Modern%20graphic%20'How%20to%20create%20an%20inclusive%20workplace%20where%20Diversity%20prevails'%20abstract%20figures%20in%20a%20circle%20with%20speech%20bubbles,%20gradient%20background%20violet%20blue%20orange%20colors,%20clean%20and%20professional" alt="Diversity Prevails" class="w-full h-48 object-contain mb-6 bg-slate-100">
+                            <h4 class="text-2xl font-bold gradient-text mb-3">Diversity</h4>
+                            <p>Brings a wealth of perspectives, ideas, and experiences that drive innovation and creativity, enabling companies to better understand and serve their diverse customer base.</p>
+                        </div>
+                        <!-- Equanimity Card --><div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 reveal" style="transition-delay: 200ms;">
+                            <img src="https://image.pollinations.ai/prompt/Modern%20graphic%20'The%20Significance%20of%20Equanimity%20at%20the%20Workplace'%20abstract%20scale%20balancing%20two%20figures,%20gradient%20violet%20blue%20orange%20background,%20clean%20icons%20representing%20fairness,%20respect,%20balance" alt="Significance of Equanimity" class="w-full h-48 object-contain mb-6 bg-slate-100">
+                            <h4 class="text-2xl font-bold gradient-text mb-3">Equanimity</h4>
+                            <p>Ensures all employees are treated with fairness and respect, regardless of their background or position. This balance is crucial for preventing discrimination and promoting belonging.</p>
+                        </div>
+                        <!-- Harmony Card --><div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 reveal" style="transition-delay: 400ms;">
+                            <img src="https://image.pollinations.ai/prompt/Modern%20graphic%20'Fostering%20Harmony%20at%20the%20Workplace'%20abstract%20figures%20forming%20a%20circle%20around%20puzzle%20pieces,%20gradient%20violet%20blue%20orange%20background,%20icons%20for%20collaboration,%20support,%20unity" alt="Fostering Harmony" class="w-full h-48 object-contain mb-6 bg-slate-100">
+                            <h4 class="text-2xl font-bold gradient-text mb-3">Harmony</h4>
+                            <p>Enhances collaboration and reduces conflict, leading to a more cohesive and supportive work culture. Valued employees work together effectively towards the organization’s goals.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- POSH Act Section --><div class="gradient-bg rounded-2xl p-12 my-16 text-white grid md:grid-cols-3 gap-8 items-center reveal">
+                     <div class="md:col-span-2">
+                        <h3 class="text-3xl font-bold mb-4">POSH: Ensuring a Safe Workplace</h3>
+                        <p class="mb-4">To safeguard and retain women at the workplace, the POSH Act (Prevention of Sexual Harassment) plays a significantly supportive role. When women feel safe, supported, and validated, they are more likely to pursue their dreams and contribute their unique talents.</p>
+                        <p class="font-semibold">We, at VISHAKA, strongly follow and recommend the implementation of the POSH Act!</p>
+                     </div>
+                     <div class="text-center">
+                        <!-- POSH Act Image --><img src="https://image.pollinations.ai/prompt/Modern%20graphic%20'Posh,%20the%20act%20that%20ensures%20a%20safe%20working%20environment%20for%20all%20female%20employees!'%20empowering%20abstract%20design%20with%20diverse%20female%20silhouettes,%20gradient%20background%20violet%20blue%20orange%20colors,%20clean%20and%20professional" alt="POSH Act" class="w-full h-auto rounded-lg">
+                     </div>
+                </div>
+
+                <!-- Vision Insight --><div class="text-center py-16 reveal">
+                    <h3 class="text-3xl font-bold text-slate-800 mb-4">Vision Insight!</h3>
+                    <p class="text-lg text-slate-600 max-w-3xl mx-auto mb-8">With a vision of a harmonious and inclusive environment in the workplace, VISHAKA CONSULTANTS aims to inspire and bring about positive change in the lives of countless individuals, leaving an indelible impact on the communities it serves and for generations to come!</p>
+                    <!-- Vision Insight Image --><img src="https://image.pollinations.ai/prompt/Modern%20graphic%20'Vision%20Insight!'%20abstract%20design%20with%20glowing%20pathways%20and%20connected%20elements,%20representing%20future,%20impact,%20and%20community,%20gradient%20violet%20blue%20orange%20colors,%20clean%20and%20professional" alt="Vision Insight" class="w-full md:w-2/3 lg:w-1/2 mx-auto rounded-2xl shadow-xl">
+                </div>
+                
+                <!-- Learn More & Form Section --><div class="reveal">
+                    <div class="text-center mb-12">
+                         <p class="text-slate-600 text-lg">To learn more about Vishaka CONSULTANTS, visit our other pages:</p>
+                         <div class="flex justify-center gap-4 mt-4">
+                             <a href="#about" onclick="showPage('about', this)" class="text-violet-600 font-semibold hover:underline">About Us</a>
+                             <span class="text-slate-400">|</span>
+                             <a href="#contact" onclick="showPage('contact', this)" class="text-violet-600 font-semibold hover:underline">Contact Us</a>
+                         </div>
+                    </div>
+                    <div id="form-home"></div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ABOUT US PAGE CONTENT --><section id="about" class="page-content">
+            <div class="gradient-bg py-16 md:py-20">
+                <div class="container mx-auto px-6 text-center text-white">
+                    <h2 class="text-4xl md:text-5xl font-extrabold reveal">About VISHAKA CONSULTANTS</h2>
+                    <p class="text-lg mt-4 max-w-3xl mx-auto reveal" style="transition-delay: 200ms;">Creating a pathway towards a diversified, equanimous and harmonious workplace for goodwill and increased business returns!</p>
+                </div>
+            </div>
+            
+            <div class="container mx-auto px-6 py-16">
+                 <!-- Building the Stairway Section --><div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+                    <div class="reveal">
+                        <!-- Building the Stairway Image --><img src="https://image.pollinations.ai/prompt/Modern%20graphic%20'Building%20the%20Stairway!'%20abstract%20stairway%20leading%20upwards,%20representing%20growth%20and%20progress,%20gradient%20violet%20blue%20orange%20background,%20clean%20and%20professional" alt="Building the Stairway" class="rounded-2xl shadow-xl w-full h-auto">
+                    </div>
+                    <div class="reveal">
+                        <h3 class="text-3xl font-bold text-slate-800 mb-4">Building the Stairway!</h3>
+                        <p class="mb-4">Founded in 2018 by social entrepreneur Rachna Saksena, Vishaka is a hybrid (non-profit and profit) organisation striving to create equanimity and a favourably harmonious, diversified environment at the workplace.</p>
+                        <p>By collaborating with government organizations and providing dedicated guidance and capacity building, Vishaka aims to create awareness and sustainable solutions that lead to a level playing field.</p>
+                    </div>
+                </div>
+
+                <!-- Bridging the gap Section --><div class="text-center mb-16 reveal">
+                    <h3 class="text-3xl font-bold text-slate-800 mb-2">Bridging the Gap!</h3>
+                    <p class="text-slate-600 max-w-3xl mx-auto">Vishaka is committed to building the stairway by bridging the gap at policy, organizational, and individual levels through the following steps:</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                     <!-- Advocacy --><div class="bg-white p-8 rounded-2xl shadow-lg reveal">
+                        <h4 class="text-2xl font-bold gradient-text mb-3">ADVOCACY!</h4>
+                        <ul class="text-left space-y-2 text-slate-600 list-disc list-inside">
+                            <li>Promoting gender-positive policies.</li>
+                            <li>Opinion building through dialogue & research.</li>
+                            <li>Gender budgeting in public policy.</li>
+                        </ul>
+                    </div>
+                     <!-- Systemic Interventions --><div class="bg-white p-8 rounded-2xl shadow-lg reveal" style="transition-delay: 200ms;">
+                        <h4 class="text-2xl font-bold gradient-text mb-3">SYSTEMIC INTERVENTIONS!</h4>
+                         <ul class="text-left space-y-2 text-slate-600 list-disc list-inside">
+                            <li>Workshops on gender sensitization.</li>
+                            <li>Audit and assessment of affirmative action.</li>
+                            <li>External member on IC committees (POSH).</li>
+                        </ul>
+                    </div>
+                     <!-- Talent Engagement --><div class="bg-white p-8 rounded-2xl shadow-lg reveal" style="transition-delay: 400ms;">
+                        <h4 class="text-2xl font-bold gradient-text mb-3">DIVERSITY TALENT ENGAGEMENT!</h4>
+                         <ul class="text-left space-y-2 text-slate-600 list-disc list-inside">
+                            <li>Capacity building for the changing workplace.</li>
+                            <li>Coaching and counselling for performance.</li>
+                            <li>Developing women leaders.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Vision Section --><div class="text-center py-20 reveal">
+                    <h3 class="text-3xl font-bold text-slate-800 mb-4">Our Vision!</h3>
+                    <p class="text-lg text-slate-600 max-w-3xl mx-auto">With a vision of a diverse, harmonious, and inclusive ecosystem at the workplace, Vishaka aims to inspire and bring about positive change in the lives of countless individuals, leaving an indelible impact on the communities it serves!</p>
+                </div>
+                
+                 <!-- Learn More & Form Section --><div class="reveal">
+                    <div class="text-center mb-12">
+                         <p class="text-slate-600 text-lg">For more...</p>
+                         <div class="flex justify-center gap-4 mt-4">
+                             <a href="#home" onclick="showPage('home', this)" class="text-violet-600 font-semibold hover:underline">Home</a>
+                             <span class="text-slate-400">|</span>
+                             <a href="#contact" onclick="showPage('contact', this)" class="text-violet-600 font-semibold hover:underline">Contact Us</a>
+                         </div>
+                    </div>
+                    <div id="form-about"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOUNDER PAGE CONTENT --><section id="founder" class="page-content">
+            <div class="gradient-bg py-16 md:py-20">
+                <div class="container mx-auto px-6 text-center text-white">
+                    <h2 class="text-4xl md:text-5xl font-extrabold reveal">Meet the Founder</h2>
+                </div>
+            </div>
+            <div class="bg-slate-50">
+                <div class="container mx-auto px-6 py-20">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div class="reveal">
+                            <h3 class="text-3xl font-bold gradient-text mb-6">Rachna Saksena</h3>
+                            <p class="text-slate-600 mb-4">Rachna Saksena is a passionate social entrepreneur with a mission to create inclusive and harmonious workplaces. With over [Number] years of experience in [Your Mother's Field], she has dedicated her career to championing diversity and fostering environments where every individual can thrive.</p>
+                            <p class="text-slate-600">Her vision led to the founding of VISHAKA CONSULTANTS in 2018, an organization committed to empowering women and promoting gender equality through advocacy, training, and systemic interventions.</p>
+                            <div class="mt-8 flex space-x-4">
+                                <a href="https://www.linkedin.com/in/rachna-saksena-3574a0/overlay/photo/" target="_blank" class="text-slate-500 hover:text-violet-600 transition-colors duration-300">
+                                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
+                                </a>
+                                <a href="https://x.com/rachnasaksena" target="_blank" class="text-slate-500 hover:text-violet-600 transition-colors duration-300">
+                                     <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616v.064c0 2.298 1.634 4.212 3.793 4.649-.65.177-1.354.23-2.067.087.616 1.9 2.396 3.281 4.491 3.321-1.745 1.365-3.882 2.129-6.06 2.129-.39 0-.776-.022-1.157-.067 2.211 1.423 4.845 2.24 7.64 2.24 9.172 0 14.19-7.795 13.905-14.513 1.021-.726 1.848-1.636 2.44-2.67z"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="reveal" style="transition-delay: 200ms;">
+                            <div class="relative w-full max-w-sm mx-auto">
+                                <div class="absolute inset-0 gradient-bg rounded-full transform -rotate-12 scale-105"></div>
+                                <img src="mother.jpeg" alt="Portrait of Rachna Saksena" class="relative rounded-full shadow-2xl w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container mx-auto px-6 py-20">
+                <h3 class="text-3xl font-bold text-center text-slate-800 mb-12 reveal">Awards & Achievements</h3>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Award 1 Placeholder -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 reveal">
+                        <div class="w-full h-48 bg-slate-100 flex items-center justify-center">
+                           <img src="https://placehold.co/600x400/a855f7/ffffff?text=Award+Image" alt="Award Certificate 1" class="w-full h-full object-contain">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="font-bold text-xl text-slate-800 mb-2">Title of the Award</h4>
+                            <p class="text-slate-600">A brief description of the achievement and the organization that presented the award.</p>
+                        </div>
+                    </div>
+                    <!-- Award 2 Placeholder -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 reveal" style="transition-delay: 200ms;">
+                         <div class="w-full h-48 bg-slate-100 flex items-center justify-center">
+                           <img src="https://placehold.co/600x400/7c3aed/ffffff?text=Award+Image" alt="Award Certificate 2" class="w-full h-full object-contain">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="font-bold text-xl text-slate-800 mb-2">Title of the Award</h4>
+                            <p class="text-slate-600">A brief description of the achievement and the organization that presented the award.</p>
+                        </div>
+                    </div>
+                    <!-- Award 3 Placeholder -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 reveal" style="transition-delay: 400ms;">
+                         <div class="w-full h-48 bg-slate-100 flex items-center justify-center">
+                           <img src="https://placehold.co/600x400/4f46e5/ffffff?text=Award+Image" alt="Award Certificate 3" class="w-full h-full object-contain">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="font-bold text-xl text-slate-800 mb-2">Title of the Award</h4>
+                            <p class="text-slate-600">A brief description of the achievement and the organization that presented the award.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT US PAGE CONTENT --><section id="contact" class="page-content">
+             <div class="gradient-bg py-16 md:py-20">
+                <div class="container mx-auto px-6 text-center text-white">
+                    <h2 class="text-4xl md:text-5xl font-extrabold reveal">Get In Touch</h2>
+                    <p class="text-lg mt-4 max-w-3xl mx-auto reveal" style="transition-delay: 200ms;">Grow your company with happy and satisfied employees!</p>
+                </div>
+            </div>
+            
+            <div class="container mx-auto px-6 pt-12 pb-16">
+                <div class="grid md:grid-cols-5 gap-12 items-start">
+                    <div class="md:col-span-2 space-y-6 reveal">
+                         <h3 class="text-2xl font-bold text-slate-800">Why a Positive Culture Matters</h3>
+                         <p>The culture of the company you work for will have a significant impact on your level of job satisfaction, motivation, and career growth. When the culture is positive, working is enjoyable; when it’s unfavourable, it may lead to burnout and stress.</p>
+                         <p class="mb-6">We, at VISHAKA CONSULTANTS, strive to create diversity, equality, and harmony at the workplace through personal guidance, government association, advocacy, and organizational events.</p>
+                         <button onclick="showPage('founder', this)" class="gradient-bg text-white font-bold py-3 px-8 rounded-full hover:shadow-xl hover:scale-105 transition-all duration-300">
+                            Meet The Founder
+                        </button>
+                    </div>
+                    <div class="md:col-span-3 reveal" style="transition-delay: 200ms;">
+                        <div id="form-contact"></div>
+                    </div>
+                </div>
+                
+                <!-- Learn More Section --><div class="reveal mt-20">
+                    <div class="text-center">
+                         <p class="text-slate-600 text-lg">To learn more about Vishaka CONSULTANTS, visit:</p>
+                         <div class="flex justify-center gap-4 mt-4">
+                             <a href="#home" onclick="showPage('home', this)" class="text-violet-600 font-semibold hover:underline">Home</a>
+                             <span class="text-slate-400">|</span>
+                             <a href="#about" onclick="showPage('about', this)" class="text-violet-600 font-semibold hover:underline">About Us</a>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-800 text-slate-300 mt-16">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2025 VISHAKA CONSULTANTS. All Rights Reserved.</p>
+            <p class="text-sm text-slate-400 mt-2">Creating a pathway towards diversity, equanimity, and harmony.</p>
+        </div>
+    </footer>
+
+
+    <script>
+        const contactFormHTML = `
+            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-2xl max-w-2xl mx-auto">
+                <h3 class="text-3xl font-bold text-center mb-2 gradient-text">Contact Us</h3>
+                <p class="text-center text-slate-500 mb-8">Let's build a better workplace together.</p>
+                <form action="https://formspree.io/f/xblzwkkl" method="POST">
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div>
+                            <label for="first-name" class="block text-sm font-medium text-slate-600 mb-1">First Name</label>
+                            <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="form-input block w-full rounded-lg py-3 px-4" placeholder="Your first name">
+                        </div>
+                        <div>
+                            <label for="last-name" class="block text-sm font-medium text-slate-600 mb-1">Last Name</label>
+                            <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="form-input block w-full rounded-lg py-3 px-4" placeholder="Your last name">
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <label for="email" class="block text-sm font-medium text-slate-600 mb-1">Email</label>
+                        <input type="email" name="email" id="email" autocomplete="email" class="form-input block w-full rounded-lg py-3 px-4" placeholder="you@example.com">
+                    </div>
+                    <div class="mt-6">
+                        <label for="message" class="block text-sm font-medium text-slate-600 mb-1">Message</label>
+                        <textarea name="message" id="message" rows="4" class="form-input block w-full rounded-lg py-3 px-4" placeholder="How can we help?"></textarea>
+                    </div>
+                    <div class="mt-8 text-center">
+                        <button type="submit" class="w-full sm:w-auto gradient-bg text-white font-bold py-3 px-12 rounded-full hover:shadow-Understood. I have made the final adjustments to the Canvas.
+
+The website was already built to be fully responsive, meaning it automatically adapts to fit any screen size, from a small mobile phone to a large desktop monitor. This is handled by the modern framework (Tailwind CSS) used to build the site, ensuring a professional experience for all visitors.
+
+I have also updated the home page to capitalize "CONSULTANTS" for a stronger impact, and I've ensured this capitalization is consistent across all pages for brand uniformity.
+
+Here is the final version of the code for you.
+-all duration-300">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+        `;
+
+        // Inject the contact form into all three placeholders
+        document.getElementById('form-home').innerHTML = contactFormHTML;
+        document.getElementById('form-about').innerHTML = contactFormHTML;
+        document.getElementById('form-contact').innerHTML = contactFormHTML;
+
+        // Page Navigation Logic
+        const pages = document.querySelectorAll('.page-content');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function showPage(pageId, clickedLink) {
+            // Use the pageId directly. The URL constructor was failing for elements like buttons.
+            const targetId = pageId;
+
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(targetId).classList.add('active');
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-violet-700', 'font-bold');
+                link.classList.add('text-slate-600');
+                if (link.getAttribute('href') === `#${targetId}`) {
+                    link.classList.add('text-violet-700', 'font-bold');
+                    link.classList.remove('text-slate-600');
+                }
+            });
+            window.scrollTo(0, 0); // Scroll to top on page change
+            runRevealAnimation(); // Re-run animation check for new page
+        }
+
+        // Set initial active link
+        document.querySelector('.nav-link[href="#home"]').classList.add('text-violet-700', 'font-bold');
+        document.querySelector('.nav-link[href="#home"]').classList.remove('text-slate-600');
+
+
+        // Mobile Menu
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        function closeMenu() {
+            mobileMenu.classList.add('hidden');
+        }
+
+        // On-scroll Reveal Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        function runRevealAnimation() {
+            const revealElements = document.querySelectorAll('.reveal');
+            revealElements.forEach(el => {
+                // If element is already visible, don't re-observe
+                if(!el.classList.contains('visible')) {
+                    observer.observe(el);
+                }
+            });
+        }
+        
+        // Run on initial load
+        runRevealAnimation();
+    </script>
+</body>
+</html>
+
